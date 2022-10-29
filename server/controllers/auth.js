@@ -45,8 +45,11 @@ console.log(password);
     const emailLowerCase = email.toLowerCase();
 
     User.findOne({ email: emailLowerCase}, (error, userStore) => {
-        if(error) {
-            res.status(500).send({msg: "Error interno no servidor!"});
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        console.log(`error = ${error}`);
+        console.log(`userStore = ${userStore}`);
+        if(!error  && !userStore || error) {
+            res.status(500).send({msg: "Error interno no servidor ou e-mail não encontrado!"});
         } else {
             //console.log("Password: ", password);
             //console.log(userStore);
@@ -68,7 +71,26 @@ console.log(password);
     });
 }
 
+function refreshAccessToken(req, res) {
+    const { refreshToken } = req.body;
+
+    if(!refreshToken) res.status(400).send({ msg: "Token requerido!"});    
+    
+    const { user_id } = jwt.decoder(refreshToken);
+
+    User.findOne( {_id: user_id }, ( error, userStorage ) => {
+        if(error) {
+            res.status(500).send({ msg: "Usuário não encontrado ou erro interno no servidor!"});
+        }else {
+            res.status(200).send({ 
+                accessToken: jwt.createAccessToken(userStorage), 
+            });
+        }
+    });
+}
+
 module.exports = {
     register,
     login,
+    refreshAccessToken,
 };
