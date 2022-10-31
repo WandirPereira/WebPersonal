@@ -19,7 +19,7 @@ app.use(express.static("uploads"));
 
 //Configure Header HTTP - CORS
 app.use(cors());
-
+//console.log("app-js****************************");
 //Configure routings
 app.use(`/api/${API_VERSION}`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);

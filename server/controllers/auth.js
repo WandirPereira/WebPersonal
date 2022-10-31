@@ -3,7 +3,7 @@ const User = require("../models/user");
 const jwt = require("../utils/jwt.js");
 
 function register(req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     const {firstname, lastname, email, password, role} = req.body;
 
     if (!email) res.status(400).send( {msg : "O email é obrigatório!"});
@@ -37,17 +37,17 @@ function register(req, res) {
 
 function login(req, res){
     const { email, password } = req.body;
-console.log(email);
-console.log(password);
+    //console.log(email);
+    //console.log(password);
     if(!email) res.status(400).send({ msg: "O e-mail é obrigatório!"});
     if(!password) res.status(400).send({ msg: "A senha é obrigatória!"});
     
     const emailLowerCase = email.toLowerCase();
 
     User.findOne({ email: emailLowerCase}, (error, userStore) => {
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        console.log(`error = ${error}`);
-        console.log(`userStore = ${userStore}`);
+        //console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        //console.log(`error = ${error}`);
+        //console.log(`userStore = ${userStore}`);
         if(!error  && !userStore || error) {
             res.status(500).send({msg: "Error interno no servidor ou e-mail não encontrado!"});
         } else {

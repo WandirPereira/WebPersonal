@@ -9,16 +9,16 @@ function assureAuth(req, res, next){
     //console.log("Executando assureAuth");
 
     const accessToken = req.headers.authorization.replace("Bearer ","");
-    console.log(accessToken);
+    //console.log(accessToken);
 
     try {
-    console.log(accessToken);
+        //console.log(accessToken);
         const payload = jwt.decoder(accessToken);
-        console.log(payload);
+        //console.log(payload);
         const { exp } = payload;
         const currentData = new Date().getTime();
-        console.log(exp);
-        console.log(currentData);
+        //console.log(exp);
+        //console.log(currentData);
         if(exp <= currentData){
             return res.status(400).send({ msg: "AccessToken expirado!"})
         }
