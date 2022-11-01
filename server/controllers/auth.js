@@ -6,8 +6,8 @@ function register(req, res) {
     //console.log(req.body);
     const {firstname, lastname, email, password, role} = req.body;
 
-    if (!email) res.status(400).send( {msg : "O email é obrigatório!"});
-    if (!password) res.status(400).send( {msg : "A senha é obrigatória!"});
+    if (!email) return res.status(400).send( {msg : "O email é obrigatório!"});
+    if (!password) return res.status(400).send( {msg : "A senha é obrigatória!"});
 
     const user = new User({
         firstname,
@@ -28,9 +28,9 @@ function register(req, res) {
 
     user.save((error, userStoraged) => {
         if(error) {
-            res.status(400).send({ msg : "Erro ao criar o usuário! "});
+            return res.status(400).send({ msg : "Erro ao criar o usuário! "});
         } else {
-            res.status(200).send(userStoraged);
+            return res.status(200).send(userStoraged);
         }
     })
 }
@@ -39,8 +39,8 @@ function login(req, res){
     const { email, password } = req.body;
     //console.log(email);
     //console.log(password);
-    if(!email) res.status(400).send({ msg: "O e-mail é obrigatório!"});
-    if(!password) res.status(400).send({ msg: "A senha é obrigatória!"});
+    if(!email) return res.status(400).send({ msg: "O e-mail é obrigatório!"});
+    if(!password) return res.status(400).send({ msg: "A senha é obrigatória!"});
     
     const emailLowerCase = email.toLowerCase();
 
@@ -49,19 +49,19 @@ function login(req, res){
         //console.log(`error = ${error}`);
         //console.log(`userStore = ${userStore}`);
         if(!error  && !userStore || error) {
-            res.status(500).send({msg: "Error interno no servidor ou e-mail não encontrado!"});
+            return res.status(500).send({msg: "Error interno no servidor ou e-mail não encontrado!"});
         } else {
             //console.log("Password: ", password);
             //console.log(userStore);
             bcrypt.compare(password, userStore.password, (bcryptError, check) => {
                 if(bcryptError){
-                    res.status(500).send({msg: "Error interno no servidor!"});
+                    return res.status(500).send({msg: "Error interno no servidor!"});
                 } else if (!check){
-                    res.status(400).send({msg: "Senha incorreta!"});
+                    return res.status(400).send({msg: "Senha incorreta!"});
                 } else if (!userStore.active) {
-                    res.status(401).send({msg: "Usuário não autorizado ou inativo!"});
+                    return res.status(401).send({msg: "Usuário não autorizado ou inativo!"});
                 } else {
-                    res.status(200).send({
+                    return res.status(200).send({
                         access: jwt.createAccessToken(userStore),
                         refresh: jwt.createRefreshToken(userStore),               
                     });
@@ -74,15 +74,15 @@ function login(req, res){
 function refreshAccessToken(req, res) {
     const { refreshToken } = req.body;
 
-    if(!refreshToken) res.status(400).send({ msg: "Token requerido!"});    
+    if(!refreshToken) return res.status(400).send({ msg: "Token requerido!"});    
     
     const { user_id } = jwt.decoder(refreshToken);
 
     User.findOne( {_id: user_id }, ( error, userStorage ) => {
         if(error) {
-            res.status(500).send({ msg: "Usuário não encontrado ou erro interno no servidor!"});
+            return res.status(500).send({ msg: "Usuário não encontrado ou erro interno no servidor!"});
         }else {
-            res.status(200).send({ 
+            return res.status(200).send({ 
                 accessToken: jwt.createAccessToken(userStorage), 
             });
         }
