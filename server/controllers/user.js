@@ -21,7 +21,12 @@ async function getUsers(req, res){
      }else {
         response = await User.find({ active });
      }
-    return res.status(200).send(response);
+
+     if(!response){
+        return res.status(400).send({ msg: "Nenhum usuário encontrado!"} );
+     }else{
+        return res.status(200).send(response);
+     }
 }
 
 async function createUser(req, res) {
@@ -37,11 +42,10 @@ async function createUser(req, res) {
     if(req.files.avatar){
         const imagePath = image.getFilePath(req.files.avatar);
         user.avatar = imagePath;
-
-        console.log(`imagePath = ${imagePath}`);
-        console.log(imagePath);
+        //console.log(`imagePath = ${imagePath}`);
+        //console.log(imagePath);
     }
-    console.log(user);
+    //console.log(user);
 
     const response = await User.findOne({email: req.body.email});
     if(response){
@@ -104,7 +108,6 @@ async function deleteUser(req, res){
             return res.status(200).send({ msg: "Usuário deletado com sucesso!" });
         }
     });
-
 }
 
 module.exports = {
