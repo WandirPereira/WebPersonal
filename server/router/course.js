@@ -9,7 +9,7 @@ const api = express.Router();
 
 api.post("/course", [md_auth.assureAuth, md_upload] , CourseController.createCourse);
 api.get("/courses",  [md_auth.assureAuth], CourseController.getCourses);
-//api.patch("/menu/:id", [md_auth.assureAuth], MenuController.updateMenu);
-//api.delete("/menu/:id", [md_auth.assureAuth], MenuController.deleteMenu);
+api.patch("/course/:id", [md_auth.assureAuth, md_upload], CourseController.updateCourse);
+api.delete("/course/:id", [md_auth.assureAuth], CourseController.deleteCourse);
 
 module.exports = api;
