@@ -1,5 +1,7 @@
 import React from 'react'
 
+const user = null;
+
 export function AdminLayout( props ) {
 const { children } = props;
 
