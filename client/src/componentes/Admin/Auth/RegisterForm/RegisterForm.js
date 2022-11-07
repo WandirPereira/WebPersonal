@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
+import { Auth } from "../../../../api"
 import { initialValues, validationSchema } from "./RegisterForm.form";
 import "./RegisterForm.scss";
 
-export function RegisterForm() {
+const authController = new Auth();
 
+export function RegisterForm( props ) {
+    const { openLogin } = props;
     const [error, setError] =  useState("");
 
     const  formik = useFormik({
@@ -16,6 +19,8 @@ export function RegisterForm() {
             try {
                 //console.log(formValue);
                 setError("");
+                await authController.register(formValue);
+                openLogin();
             } catch {
                 //console.error(error);
                 setError("Erro interno no servidor!");

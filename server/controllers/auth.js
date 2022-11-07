@@ -30,7 +30,7 @@ function register(req, res) {
         if(error) {
             return res.status(400).send({ msg : "Erro ao criar o usuário! "});
         } else {
-            return res.status(200).send(userStoraged);
+            return res.status(201).send(userStoraged);
         }
     })
 }
