@@ -29,7 +29,7 @@ export function RegisterForm( props ) {
     });
 
     return (
-        <Form  className='register-form' onSubmit={formik.handleSubmit}>
+        <Form  className='register-form' onSubmit={formik.handleSubmit} autoComplete="off">
             <Form.Input 
                 name="email"  
                 placeholder="E-mail" 
@@ -60,7 +60,7 @@ export function RegisterForm( props ) {
                 name="conditionsAccepted" 
                 label="Li e aceito as políticas de privacidade" 
                 onChange={(_ , data) => formik.setFieldValue("conditionsAccepted", data.checked)}
-                cheked={formik.values.conditionsAccepted}
+                checked={formik.values.conditionsAccepted}
                 error={formik.errors.conditionsAccepted}
             />
 
