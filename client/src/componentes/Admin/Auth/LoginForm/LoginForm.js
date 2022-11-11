@@ -2,26 +2,29 @@ import React from 'react';
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { Auth } from "../../../../api";
+import {useAuth} from "../../../../hooks"
 import { initialValues, validationSchema } from "./LoginForm.form";
 
 const authController = new Auth();
 
 export function LoginForm() {
 
-  const formik = useFormik({
-    initialValues: initialValues(),
-    validationSchema: validationSchema(),
-    validateOnChange: false,
-    onSubmit: async (formValue) => {
-        try {
-            //console.log(formValue);
-            const response = await authController.login(formValue);
-            console.log(response);
-        } catch (error) {
-            console.error(error);
+    const { login } = useAuth();
+    const formik = useFormik({
+        initialValues: initialValues(),
+        validationSchema: validationSchema(),
+        validateOnChange: false,
+        onSubmit: async (formValue) => {
+            try {
+                //console.log(formValue);
+                const response = await authController.login(formValue);
+                login(response.access);
+                //console.log(response);
+            } catch (error) {
+                console.error(error);
+            }
         }
-    }
-  });
+    });
 
   return (
     <Form onSubmit={ formik.handleSubmit } >
