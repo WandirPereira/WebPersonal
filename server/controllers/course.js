@@ -1,4 +1,5 @@
 const Course = require("../models/course");
+const image = require("../utils/image");
 
 async function createCourse(req, res){
     const course = new Course(req.body);
