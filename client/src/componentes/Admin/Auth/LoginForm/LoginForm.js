@@ -16,10 +16,12 @@ export function LoginForm() {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                //console.log(formValue);
+                //Chama o login do backend, passando o email e password, através do formValue, e recebe o accessToken e o refreshToken
                 const response = await authController.login(formValue);
+                authController.setAccessToken(response.access);
+                authController.setRefreshToken(response.refresh);
+                //chama o método login da AuthContext, que salva o user e accessToken em uma variável UseState
                 login(response.access);
-                //console.log(response);
             } catch (error) {
                 console.error(error);
             }
