@@ -1,0 +1,38 @@
+import React from 'react';
+import { Menu, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import  "./AdminMenu.scss";
+
+export function AdminMenu() {
+  return (
+    <Menu fluid vertical icon text className='admin-menu'>
+        <Menu.Item  as={Link} to="/admin/users">
+            <Icon name="user outline" />
+            Usuário
+        </Menu.Item>
+
+        <Menu.Item  as={Link} to="/admin/menu">
+            <Icon name="bars" />
+            Menu
+        </Menu.Item>
+
+        <Menu.Item  as={Link} to="/admin/courses">
+            <Icon name="computer" />
+            Cursos
+        </Menu.Item>
+
+        <Menu.Item  as={Link} to="/admin/newsletter">
+            <Icon name="mail" />
+            Newsletter
+        </Menu.Item>
+
+        <Menu.Item  as={Link} to="/admin/blog">
+            <Icon name="comment alternate outline" />
+            Bloq
+        </Menu.Item>
+
+    </Menu>
+
+    
+  )
+}
