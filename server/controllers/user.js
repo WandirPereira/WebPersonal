@@ -36,8 +36,8 @@ async function createUser(req, res) {
     const salt = bcrypt.genSaltSync(10);
     const encodedPassword = bcrypt.hashSync(password, salt);
     user.password = encodedPassword;
-    console.log(encodedPassword);
-    console.log(req.files.avatar);
+    //console.log(encodedPassword);
+    //console.log(req.files.avatar);
 
     if(req.files.avatar){
         const imagePath = image.getFilePath(req.files.avatar);
@@ -56,7 +56,7 @@ async function createUser(req, res) {
         if(error) {
             return res.status(400).send({ msg: "Erro ao criar o usuário!", erro: error })
         } else{
-            return res.status(200).send( userStored );
+            return res.status(201).send( userStored );
         }
     });
 }

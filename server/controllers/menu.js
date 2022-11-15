@@ -33,9 +33,9 @@ async function updateMenu(req, res){
 
     //const _menu = await Menu.findById(id);
     //if(!_menu) return res.status(400).send({ msg: "Menu não encontrado!"})
-    console.log(id);
+    //console.log(id);
     const menuData = req.body;
-    console.log(menuData);
+    //console.log(menuData);
     Menu.findByIdAndUpdate({ _id: id }, menuData, (error) => {
         if(error){
             return res.status(400).send({ msg: "Erro ao atualizar o menu!", erro: {error}});

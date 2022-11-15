@@ -3,7 +3,7 @@ const image = require("../utils/image");
 
 async function createCourse(req, res){
     const course = new Course(req.body);
-    console.log(course);
+    //console.log(course);
 
     const imagePath = image.getFilePath(req.files.miniature);
     course.miniature = imagePath;
@@ -42,7 +42,7 @@ async function updateCourse(req, res){
     // if(!_user) return res.status(400).send({ msg: "Usuário não encontrado!"})
 
     const courseData = req.body;
-    console.log(courseData);
+    //console.log(courseData);
 
     //avatar
     if(req.files.miniature){

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Users.scss";
+import { UsersForm } from "../../../componentes/Admin/Users"
 import { BasicModal } from "../../../componentes/Shared";
 
 export function Users() {
@@ -37,8 +38,12 @@ export function Users() {
         <Tab menu={{ secondary: true }} panes={panes} />
       </div>
 
-      <BasicModal show={ showModal } close={ onOpenCloseModal } title="Criar novo usuário">
-          <h2>Formulário para criar usuário!</h2>
+      <BasicModal 
+        show={ showModal } 
+        close={ onOpenCloseModal } 
+        title="Criar novo usuário"
+      >
+          <UsersForm close={onOpenCloseModal} />
       </BasicModal>
     </>
   );
