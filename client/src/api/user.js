@@ -34,11 +34,12 @@ export class User {
                //console.log(key);
            });
 
+            //console.log(data.fileAvatar);
            if(data.fileAvatar){
                 formData.append("avatar", data.fileAvatar);
            }
 
-           console.log(data);
+           //console.log(data);
 
            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}`;
            const params = {
@@ -58,6 +59,27 @@ export class User {
            return result;
 
 
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getUsers(accessToken, active = undefined) {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.USERS}?active=${active}`;
+            const params = {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`,
+                },
+            };
+
+            const response = await fetch(url, params);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
+            return result;
         } catch (error) {
             throw error;
         }

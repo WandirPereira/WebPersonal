@@ -9,6 +9,7 @@ export const ENV = {
         REFRESH_ACCESS_TOKEN: "auth/refreshAccessToken",
         USER_ME: "user/me",
         USER: "user",
+        USERS: "users",
     },
     JWT: {
         ACCESS: "access",

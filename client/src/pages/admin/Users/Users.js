@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Users.scss";
-import { UsersForm } from "../../../componentes/Admin/Users"
+import { UsersForm, ListUsers } from "../../../componentes/Admin/Users"
 import { BasicModal } from "../../../componentes/Shared";
 
 export function Users() {
 
   const [showModal, setShowModal] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const onOpenCloseModal = () => setShowModal((prevState) => !prevState );
+  const onReload = () => setReload((prevState) => !prevState);
   
   const panes = [
     {
       menuItem: "Usuários ativos",
       render: () => (
         <Tab.Pane attached={false}>
-          <h2>Usuários ativos</h2>
+            <ListUsers usersActive={true} reload={reload}/>
         </Tab.Pane>
       ),
     },
@@ -23,7 +25,7 @@ export function Users() {
       menuItem: "Usuários inativos",
       render: () => (
         <Tab.Pane attached={false}>
-          <h2>Usuários inativos</h2>
+            <ListUsers usersActive={false} reload={reload}/>
         </Tab.Pane>
       ),
     },
@@ -43,7 +45,7 @@ export function Users() {
         close={ onOpenCloseModal } 
         title="Criar novo usuário"
       >
-          <UsersForm close={onOpenCloseModal} />
+          <UsersForm close={onOpenCloseModal} onReload={onReload}/>
       </BasicModal>
     </>
   );
