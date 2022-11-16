@@ -1,25 +1,25 @@
 import * as Yup from "yup";
 
-export function initialValues(){
+export function initialValues(user){
     return {
-        avatar: "",
+        avatar: user?.avatar || "",
         fileAvatar: null,
-        firstname: "",
-        lastname: "",
-        email: "",
-        role: "",
+        firstname: user?.firstname || "",
+        lastname: user?.lastname || "",
+        email: user?.email || "",
+        role: user?.role || "",
         password: "",
     };
 }
 
 
-export function validationSchema(){
+export function validationSchema(user){
     return Yup.object({
         firstname: Yup.string().required('Informe o nome!'),
         lastname: Yup.string().required('Informe o sobrenome!'),
         email: Yup.string().email(true).required("Informe o e-mail!"),
         role: Yup.string().required('Selecione o perfil!'),
-        password: Yup.string().required('Informe a senha!'),
+        password: user ? Yup.string() : Yup.string().required('Informe a senha!'),
     });
 }
 
