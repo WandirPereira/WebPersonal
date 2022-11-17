@@ -15,6 +15,9 @@ const userController = new User();
 export function UserForm(props) {
   
   const { close, onReload, user } = props;
+  //console.log(props);
+//console.log(onReload());
+  //console.log(close);
   const { accessToken } = useAuth();
 
   const formik = useFormik({
@@ -26,7 +29,7 @@ export function UserForm(props) {
             if(!user){
                 await userController.createUser(accessToken, formValue);
             }else{
-               await userController.updateUser(accessToken, user._id , formValue)
+               await userController.updateUser(accessToken, user._id , formValue);
             }
             onReload();
             close();
@@ -34,7 +37,7 @@ export function UserForm(props) {
             console.error(error);
         }
     }
-  })
+  });
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];

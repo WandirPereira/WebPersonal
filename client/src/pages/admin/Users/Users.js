@@ -45,7 +45,8 @@ export function Users() {
         close={ onOpenCloseModal } 
         title="Criar novo usuário"
       >
-          <UserForm close={onOpenCloseModal} reload={reload} onReload={onReload}/>
+          
+          <UserForm close={onOpenCloseModal}  onReload={onReload}/>
       </BasicModal>
     </>
   );
