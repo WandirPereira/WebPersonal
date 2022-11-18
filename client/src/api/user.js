@@ -85,31 +85,14 @@ export class User {
         }
     }
 
-    async updateUser(accessToken, iduser, userData){
+    async deleteUser(accessToken, iduser){
         try {
-            const data = userData;
-            if(!data.password) delete data.password;  //se campo password não tem valor, delete o campo todo, não envie nada
-
-           const formData = new FormData();
-           Object.keys(data).forEach((key) => {
-               formData.append(key, data[key]);
-               //console.log(key);
-           });
-
-            //console.log(data.fileAvatar);
-           if(data.fileAvatar){
-                formData.append("avatar", data.fileAvatar);
-           }
-
-           //console.log(data);
-
            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}/${iduser}`;
            const params = {
-                method: "PATCH",
+                method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
-                body: formData,
            };
 
            const response = await fetch(url, params);
