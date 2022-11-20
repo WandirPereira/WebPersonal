@@ -58,7 +58,7 @@ export  function UserItem(props) {
 
     const openDeleteConfirm = () => {
         setIsDelete(true);
-        setConfirmMessage(`Excluir usuário ${User.email}?`);
+        setConfirmMessage(`Excluir usuário ${user.email}?`);
         onOpenCloseConfirm();
     }
 

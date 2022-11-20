@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Image, Button, Icon, Confirm } from 'semantic-ui-react';
+import {  Button, Icon, Confirm } from 'semantic-ui-react';
 import { Menu } from '../../../../api';
-import { image } from "../../../../assets";
-import { ENV } from "../../../../utils";
 import { BasicModal } from "../../../Shared";
 import { useAuth } from "../../../../hooks";
 import { MenuForm} from "../MenuForm";
@@ -66,7 +64,6 @@ export  function MenuItem(props) {
     <>
         <div className='menu-item'>
             <div className='menu-item__info'>
-                {/* <Image avatar src={user.avatar ? `${ENV.BASE_PATH}/${user.avatar}` :  image.noAvatar} /> */}
                 <span className="menu-item__info-title">{menu.title}</span>
                 <span className="menu-item__info-path">{menu.path}</span>
             </div>
@@ -99,3 +96,5 @@ export  function MenuItem(props) {
     </>
   )
 }
+
+

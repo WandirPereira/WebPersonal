@@ -12,7 +12,7 @@ async function createCourse(req, res){
         if(error){
             return res.status(400).send({ msg: "Erro ao criar o curso!"});
         }else{  
-            return res.status(200).send({ courseStored });
+            return res.status(201).send({ courseStored });
         }
     });
 }

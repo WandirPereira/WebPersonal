@@ -13,7 +13,7 @@ export  function ListMenus(props) {
   const [menus, setMenus] = useState(null);
   const { accessToken } = useAuth();
 
-  console.log(menus);
+  //console.log(menus);
 
   useEffect(() => {
     (async () => {
@@ -28,7 +28,7 @@ export  function ListMenus(props) {
   }, [menusActive, reload])
 
   if(!menus) return <Loader active inline="centered"/>
-  if(size(menus) === 0) return "Não existem nenhum menu cadastrado!";
+  if(size(menus) === 0) return "Não existe nenhum menu cadastrado!";
 
   return map(menus, (menu) => ( <MenuItem key={menu._id} menu={menu} onReload={onReload}/>));
 }
