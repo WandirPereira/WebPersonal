@@ -20,8 +20,6 @@ export class Newsletter {
             const response = await fetch(url, params);
             const result = await response.json();
 
-            console.log(response);
-
             if (response.status !== 200) throw result;
 
             return result;

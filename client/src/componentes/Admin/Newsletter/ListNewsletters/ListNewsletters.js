@@ -20,14 +20,12 @@ export  function ListNewsletters(props) {
   useEffect(() => {
     (async () => {
       try {
-        //setCourses(null);
         const response = await newsletterController.getNewsletters(accessToken, {page});
 
-        //console.log(response);
-        console.log(response.emailsStored.docs);
-        console.log(response.emailsStored.limit);
-        console.log(response.emailsStored.page);
-        console.log(page);
+        // console.log(response.emailsStored.docs);
+        // console.log(response.emailsStored.limit);
+        // console.log(response.emailsStored.page);
+        // console.log(page);
 
         setNewsletters(response.emailsStored.docs);
         setPagination({
@@ -42,7 +40,6 @@ export  function ListNewsletters(props) {
     })()
   }, [page, reload]);
 
-  //console.log(courses);
 
   const changePage = (_, data) => {
     setPage(data.activePage);
@@ -51,9 +48,6 @@ export  function ListNewsletters(props) {
   if(!newsletters) return <Loader active inline="centered"/>
   if(size(newsletters) === 0) return "Não existem nenhum e-maill cadastrado!";
 
-  //console.log(courses);
-
-  //return map(courses, (course) => <CourseItem key={course._id} course={course} onReload={onReload}/>)
   return (
     <div className="list-emails">
       {map(newsletters, (newsletter) => (
