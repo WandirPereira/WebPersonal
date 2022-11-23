@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { Post } from "../../../../api";
 import { useAuth } from "../../../../hooks";
 import { ENV } from "../../../../utils";
+import { Editor } from "@tinymce/tinymce-react";
 import { initialValues, validationSchema } from "./PostForm.form";
 import "./PostForm.scss";
 
@@ -40,9 +41,9 @@ export function PostForm(props) {
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
-    console.log(acceptedFiles);
-    console.log(URL.createObjectURL(file));
-    console.log(file);
+    //console.log(acceptedFiles);
+    //console.log(URL.createObjectURL(file));
+    //console.log(file);
     formik.setFieldValue("miniature", URL.createObjectURL(file));
     formik.setFieldValue("file", file);
   });
@@ -64,6 +65,40 @@ export function PostForm(props) {
 
   return (
     <Form className='post-form' onSubmit={formik.handleSubmit}>
+        
+        <Form.Group widths="equal">       
+            <Form.Input 
+                name="title" 
+                placeholder="Título"
+                onChange={formik.handleChange}
+                value={formik.values.title}
+                error={formik.errors.title}
+            />
+            <Form.Input 
+                name="path" 
+                placeholder="Path"
+                onChange={formik.handleChange}
+                value={formik.values.path}
+                error={formik.errors.path}
+            />
+        </Form.Group> 
+
+        <Editor
+            init={{
+            height: 400,
+            menubar: true,
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount",
+            ],
+            toolbar:
+                "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+            }}
+            initialValue={formik.values.content}
+            onBlur={(e) => formik.setFieldValue("content", e.target.getContent())}
+        />
+        
         <div className='post-form__miniature' {...getRootProps()}>
             <input {...getInputProps()} />
             {getMiniature() ? 
@@ -75,48 +110,6 @@ export function PostForm(props) {
             )}
             
         </div>
-
-        <Form.Input 
-            name="title" 
-            placeholder="Título"
-            onChange={formik.handleChange}
-            value={formik.values.title}
-            error={formik.errors.title}
-        />
-        <Form.Input 
-            name="path" 
-            placeholder="Path"
-            onChange={formik.handleChange}
-            value={formik.values.path}
-            error={formik.errors.path}
-        />
-        {/* <Form.TextArea 
-            name="description" 
-            placeholder="Descrição" 
-            onChange={formik.handleChange}
-            value={formik.values.description}
-            error={formik.errors.description}
-        /> */}
-
-
-    {/* <Form.Group widths="equal">
-        <Form.Input 
-            type="number"
-            name="price" 
-            placeholder="Preço"
-            onChange={formik.handleChange}
-            value={formik.values.price}
-            error={formik.errors.price}
-        />
-        <Form.Input 
-            type="number"
-            name="score" 
-            placeholder="Avaliação"
-            onChange={formik.handleChange}
-            value={formik.values.score}
-            error={formik.errors.score}
-        />
-    </Form.Group> */}
 
 
     <Form.Button type="submit"  primary fluid  loading={ formik.isSubmitting }>
