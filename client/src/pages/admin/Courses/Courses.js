@@ -21,14 +21,6 @@ export function Courses() {
         </Tab.Pane>
       ),
     },
-    // {
-    //   menuItem: "Cursos inativos",
-    //   render: () => (
-    //     <Tab.Pane attached={false}>
-    //         {/* <ListUsers usersActive={false} reload={reload} onReload={onReload}/> */}
-    //     </Tab.Pane>
-    //   ),
-    // },
   ];
 
   return (

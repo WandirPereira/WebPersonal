@@ -23,8 +23,8 @@ export  function ListCourses(props) {
         //setCourses(null);
         const response = await courseController.getCourses(accessToken, {page} );
 
-        console.log(response);
-        console.log(response.courses.docs);
+        //console.log(response);
+        //console.log(response.courses.docs);
 
         setCourses(response.courses.docs);
         setPagination({
