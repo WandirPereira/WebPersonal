@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Users.scss";
-import { UserForm, ListUsers } from "../../../componentes/Admin/Users"
-import { BasicModal } from "../../../componentes/Shared";
+import { UserForm, ListUsers } from "../../../components/Admin/Users"
+import { BasicModal } from "../../../components/Shared";
 
 export function Users() {
 

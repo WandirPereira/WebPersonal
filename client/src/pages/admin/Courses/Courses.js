@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Courses.scss";
-import {  ListCourses, CourseForm } from "../../../componentes/Admin/Courses"
-import { BasicModal } from "../../../componentes/Shared";
+import {  ListCourses, CourseForm } from "../../../components/Admin/Courses"
+import { BasicModal } from "../../../components/Shared";
 
 export function Courses() {
 

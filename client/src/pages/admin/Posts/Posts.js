@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Posts.scss";
-import {  ListPosts, PostForm } from "../../../componentes/Admin/Posts"
-import { BasicModal } from "../../../componentes/Shared";  
+import {  ListPosts, PostForm } from "../../../components/Admin/Posts"
+import { BasicModal } from "../../../components/Shared";  
 
 export function Posts() {
 

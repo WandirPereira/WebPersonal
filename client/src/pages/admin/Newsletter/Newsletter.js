@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab } from "semantic-ui-react";
 import "./Newsletter.scss";
-import { ListNewsletters } from "../../../componentes/Admin/Newsletter"
+import { ListNewsletters } from "../../../components/Admin/Newsletter"
 
 export function Newsletter() {
 

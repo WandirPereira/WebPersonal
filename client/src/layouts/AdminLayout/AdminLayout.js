@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon }  from "../../assets";
-import { AdminMenu, Logout } from  "../../componentes/Admin/AdminLayout"
+import { AdminMenu, Logout } from  "../../components/Admin/AdminLayout"
 import "./AdminLayout.scss";
 
 const user = null;

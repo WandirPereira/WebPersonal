@@ -6,10 +6,12 @@ export class Post {
 
     async getPosts(accessToken, parameters) {
         try {
-
+            console.log(accessToken);
+            console.log(parameters);
             const pageFilter = `page=${parameters?.page || 1}`;
             const limitFilter = `limit=${parameters?.limit || 10}`;
             const url = `${this.baseApi}/${ENV.API_ROUTES.POSTS}?${pageFilter}&${limitFilter}`;
+            console.log(url);
             const params = {
                 method: "GET",
                 headers: {

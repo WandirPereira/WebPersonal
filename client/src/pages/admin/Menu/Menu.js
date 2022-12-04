@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import "./Menu.scss";
-import { BasicModal } from "../../../componentes/Shared";
-import { MenuForm, ListMenus } from "../../../componentes/Admin/Menus"
+import { BasicModal } from "../../../components/Shared";
+import { MenuForm, ListMenus } from "../../../components/Admin/Menus"
 
 export function Menu() {
   const [showModal, setShowModal] = useState(false);
