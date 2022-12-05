@@ -13,7 +13,7 @@ export class Newsletter {
             const params = {
                 method: "GET",
                 headers: {
-                    "Authorization": `Bearer ${accessToken}`,
+                    Authorization : `Bearer ${accessToken}`,
                 },
             };
 
@@ -34,7 +34,7 @@ export class Newsletter {
            const params = {
                 method: "DELETE",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization : `Bearer ${accessToken}`,
                 },
            };
 
@@ -48,5 +48,28 @@ export class Newsletter {
             throw error;
         }
     }
+
+    async registerEmail(accessToken, email) {
+        try {
+          const url = `${this.baseApi}/${ENV.API_ROUTES.NEWSLETTER}`;
+          const params = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization : `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({ email }),
+          };
+    
+          const response = await fetch(url, params);
+          const result = await response.json();
+    
+          if (response.status !== 200) throw result;
+    
+          return result;
+        } catch (error) {
+          throw error;
+        }
+      }
 
 }

@@ -19,7 +19,7 @@ export function Courses() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await courseController.getCourses(accessToken,{ page, limit: 9 });
+        const response = await courseController.getCourses(accessToken,{ page, limit: 2 });
         setPagination({
           page: response.courses.page,
           pages: response.courses.pages,
@@ -55,7 +55,7 @@ export function Courses() {
       {!isCurrentLastPage && (
         <div className="more">
           <Button primary onClick={loadMore}>
-            Cargar mas...
+            Carregar mais...
           </Button>
         </div>
       )}

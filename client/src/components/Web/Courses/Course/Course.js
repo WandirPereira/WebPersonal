@@ -14,11 +14,11 @@ export function Course(props) {
         <h3>{course.title}</h3>
         <p>{course.description}</p>
         <Button as="a" href={course.url} primary fluid target="_blank">
-          ENTRAR EN EL CURSO
+          ENTRAR NO CURSO
         </Button>
 
         <div className="course__info-footer">
-          <span>{course.price} €</span>
+          <span>R$ {course.price}</span>
           <Rating
             icon="star"
             defaultRating={course.score}

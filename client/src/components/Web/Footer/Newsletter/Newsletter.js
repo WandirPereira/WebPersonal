@@ -3,12 +3,14 @@ import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { Newsletter as NewsletterController } from "../../../../api";
 import { initialValues, validationSchema } from "./Newsletter.form";
+import { useAuth } from "../../../../hooks";
 import "./Newsletter.scss";
 
 const newsletterController = new NewsletterController();
 
 export function Newsletter() {
   const [successs, setSuccesss] = useState(false);
+  const { accessToken } = useAuth();
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -18,7 +20,7 @@ export function Newsletter() {
       setSuccesss(false);
 
       try {
-        await newsletterController.registerEmail(formValue.email);
+        await newsletterController.registerEmail(accessToken, formValue.email);
         formik.resetForm();
         setSuccesss(true);
       } catch (error) {
