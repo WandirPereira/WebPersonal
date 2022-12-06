@@ -24,10 +24,10 @@ export function ListPosts() {
 
         setPosts(response.postsStored.docs);
         setPagination({
-          limit: response.limit,
-          page: response.page,
-          pages: response.pages,
-          total: response.total,
+          limit: response.postsStored.limit,
+          page: response.postsStored.page,
+          pages: response.postsStored.pages,
+          total: response.postsStored.total,
         });
       } catch (error) {
         console.error(error);

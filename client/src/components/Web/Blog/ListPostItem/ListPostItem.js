@@ -15,8 +15,8 @@ export function ListPostItem(props) {
       <h2>{post.title}</h2>
       <span>
         {DateTime.fromISO(date.toISOString())
-          .setLocale("es")
-          .toFormat("dd 'de' LLLL 'de' yyyy")}
+          .setLocale("pt-br")
+          .toFormat("dd 'de' MMMM 'de' yyyy")}
       </span>
     </Link>
   );
